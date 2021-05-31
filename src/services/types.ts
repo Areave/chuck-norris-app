@@ -12,8 +12,8 @@ export interface Joke {
 };
 
 export interface State {
-  joke:Joke,
-  topList:Array<Joke>,
+  joke:Joke|null,
+  topList:Joke[],
   isTimer: boolean,
   loading:boolean
 }

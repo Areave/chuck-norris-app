@@ -1,13 +1,36 @@
-import React from 'react'
+import React from 'react';
+import {connect} from 'react-redux';
+import {Joke, State} from '../services/types';
+import {jokeLoaded} from '../services/actions';
 
-const Button:React.FC = ()=> {
+const Button: React.FC = (props: any) => {
+  console.log(props);
 
-  const pushMe = () => {
-console.log('its me!')
-  }
+  const {getJoke, jokeLoaded} = props;
 
-  return <button onClick={pushMe}>push me</button>
+  console.log(jokeLoaded)
 
-}
+  const loadJoke = () => {
+    getJoke().then((res: any) => {
+      jokeLoaded(res);
+    });
+  };
 
-export default Button
+  return <button onClick={() => loadJoke()}>push me</button>;
+};
+
+const mapStateToProps = (state: State) => {
+  return {
+    joke: state.joke,
+  };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    jokeLoaded: (joke: Joke) => {
+      dispatch(jokeLoaded(joke));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Button);
