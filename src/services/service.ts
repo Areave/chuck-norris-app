@@ -1,11 +1,24 @@
 import axios from 'axios';
+import {Joke} from './types';
 
 class Service {
   _jokeAPI = 'https://api.chucknorris.io/jokes/random';
 
   getRandomJoke = async () => {
-    const joke = await axios.get(this._jokeAPI);
-    return joke.data.value;
+    const joke = await axios
+      .get(this._jokeAPI)
+      .then((joke) => joke.data)
+      .catch((error) => {
+        if (error.response) {
+          console.log('error.response', error.response);
+          throw new Error('my fault');
+        } else if (error.request) {
+          console.log('error.request', error.request);
+        } else {
+          return null;
+        }
+      });
+    return joke as Joke;
   };
 }
 
