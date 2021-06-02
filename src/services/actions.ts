@@ -14,4 +14,11 @@ const addJokeToTop = (joke:Joke) => ({
   payload:joke
 });
 
-export {jokeLoaded, setTimeInterval,addJokeToTop};
+const openTopList = () => ({
+  type: 'OPEN_TOPLIST'
+});
+
+
+
+
+export {jokeLoaded, setTimeInterval,addJokeToTop, openTopList};

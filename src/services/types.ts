@@ -1,20 +1,27 @@
-
-export interface Action {
+export type Action = {
   type: string;
-  payload:Joke
-}
+  payload?: Joke;
+};
 
-export interface Joke {
+export type Joke = {
   icon_url: string;
   id: string;
   url: string;
   value: string;
 };
 
-export interface State {
-  joke:Joke|null,
-  topList:Joke[],
-  isTimer: boolean,
-  loading:boolean
+export type State = {
+  joke: Joke | null;
+  topList: (Joke|undefined)[]|[];
+  isTimer: boolean;
+  loading: boolean;
+  isTopListOpen:boolean
+};
+
+export type ActionCreator = (joke?: Joke) => Action;
+
+export interface ButtonPropsInterface {
+  onClick: (joke?: Joke) => void;
+  label: string;
 }
 

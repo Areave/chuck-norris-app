@@ -7,36 +7,23 @@ import {jokeLoaded, setTimeInterval, addJokeToTop} from '../services/actions';
 import TopList from './topList';
 
 let interval: any;
+let isTopListOpen = false;
 
 const JokeComp: React.FC = (props: any) => {
   const {
     joke,
     isTimer,
+    isTopListOpen,
     jokeLoaded,
     setTimeInterval,
     addJokeToTop,
     service,
   } = props;
 
-
-  const openTopList = () => {
-    addJokeToTop(joke);
-  };
-
-  const openTopListToProps = {
-    onClick: openTopList,
-    label: 'open top list',
-  };
-
-
+  const toggleTopList = () => {};
 
   const jokeToTop = () => {
     addJokeToTop(joke);
-  };
-
-  const getJokeToTopProps = {
-    onClick: jokeToTop,
-    label: 'put joke to top list',
   };
 
   const loadIntervalJoke = () => {
@@ -49,20 +36,10 @@ const JokeComp: React.FC = (props: any) => {
     }
   };
 
-  const getIntervalJokeProps = {
-    onClick: loadIntervalJoke,
-    label: 'set interval',
-  };
-
   const loadSingleJoke = () => {
     service.getRandomJoke().then((res: any) => {
       jokeLoaded(res);
     });
-  };
-
-  const getSingleJokeProps = {
-    onClick: loadSingleJoke,
-    label: 'load Single joke',
   };
 
   const jokeText: string = joke ? joke.value : 'push the button for joke!';
@@ -70,11 +47,11 @@ const JokeComp: React.FC = (props: any) => {
   return (
     <>
       <h1>{jokeText}</h1>
-      <Button {...getSingleJokeProps} />
-      <Button {...getIntervalJokeProps} />
-      <Button {...getJokeToTopProps} />
-      <Button {...openTopListToProps} />
-      <TopList />
+      <Button onClick={() => loadSingleJoke()} label={'load Single joke'} />
+      <Button onClick={() => loadIntervalJoke()} label={'set interval'} />
+      <Button onClick={() => jokeToTop()} label={'put joke to top list'} />
+      <Button onClick={() => toggleTopList()} label={'open top list'} />
+      {isTopListOpen && <TopList />}
     </>
   );
 };
@@ -96,11 +73,7 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const mapStateToProps = (state: State) => {
-  return {
-    joke: state.joke as Joke,
-    isTimer: state.isTimer,
-    topList: state.topList,
-  };
+  return state;
 };
 
 export default ConsumerWrapper()(
