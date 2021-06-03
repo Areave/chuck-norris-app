@@ -1,5 +1,5 @@
 import React from 'react';
-import JokeComp from './jokeComp';
+import JokeApp from './jokeApp'
 import ErrorBoundary from './errorBoundary';
 import {Provider} from 'react-redux';
 import store from '../services/store';
@@ -13,7 +13,7 @@ const App = () => {
       <ErrorBoundary>
         <Context.Provider value={service}>
           <Router>
-            <JokeComp />
+            <JokeApp />
           </Router>
         </Context.Provider>
       </ErrorBoundary>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {ButtonPropsInterface} from '../services/types';
+import {ButtonPropsInterface} from '../../services/types';
 // import {connect} from 'react-redux';
 // import {Joke, State} from '../services/types';
 // import {jokeLoaded} from '../services/actions';

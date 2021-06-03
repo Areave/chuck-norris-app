@@ -1,6 +1,7 @@
 export type Action = {
   type: string;
   payload?: Joke;
+  index?: number
 };
 
 export type Joke = {
@@ -10,18 +11,30 @@ export type Joke = {
   value: string;
 };
 
-export type State = {
+export type MyState = {
   joke: Joke | null;
-  topList: (Joke|undefined)[]|[];
+  topList: (Joke | undefined | null)[] | [];
   isTimer: boolean;
   loading: boolean;
-  isTopListOpen:boolean
+  isTopListOpen: boolean;
 };
 
 export type ActionCreator = (joke?: Joke) => Action;
+
+export type MyReducer = (
+  state: MyState | undefined,
+  action: Action
+) =>
+  | MyState
+  | {
+      joke: Joke | undefined;
+      topList: (Joke | null | undefined)[] | [];
+      isTimer: boolean;
+      loading: boolean;
+      isTopListOpen: boolean;
+    };
 
 export interface ButtonPropsInterface {
   onClick: (joke?: Joke) => void;
   label: string;
 }
-

@@ -18,7 +18,17 @@ const openTopList = () => ({
   type: 'OPEN_TOPLIST'
 });
 
+const clearTopList = () => ({
+  type: 'CLEAR_TOPLIST'
+});
+
+const deleteJoke = (index:number) => ({
+  type: 'DELETE_JOKE',
+  index:index
+
+});
 
 
 
-export {jokeLoaded, setTimeInterval,addJokeToTop, openTopList};
+
+export {jokeLoaded, setTimeInterval,addJokeToTop, openTopList, clearTopList, deleteJoke};
