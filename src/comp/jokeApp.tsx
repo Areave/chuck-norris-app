@@ -12,7 +12,8 @@ import {
   deleteJoke
 } from '../services/actions';
 
-import {Container} from '../services/styledComponents';
+import {Container, TitleStyled} from '../services/styledComponents';
+import Title from '../comp/Title/title'
 import JokeComponent from './JokeComponent/jokeComponent';
 import ButtonsComponent from './ButtonsComponent/buttonsComponent';
 import TopListComponent from './TopListComponent/topListComponent';
@@ -75,8 +76,12 @@ const JokeApp: React.FC = (props: any) => {
 
   const jokeText: string = joke ? joke.value : 'push the button for joke!';
 
+  // console.log(joke)
+
   return (
     <Container>
+      {/* <TitleStyled/> */}
+      <Title/>
       <JokeComponent joke={jokeText} />
       <ButtonsComponent propsAr={propsAr} />
       {isTopListOpen && <TopListComponent deleteJoke={deleteJoke} topList={topList} />}
@@ -118,8 +123,8 @@ const mapStateToProps = (state: MyState) => {
 };
 
 
-const jokeAppHOC = () => {
+// const jokeAppHOC = () => {
 
-}
+// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(JokeApp);

@@ -1,5 +1,4 @@
-import {Action, Joke, MyReducer, MyState} from './types';
-import React from 'react';
+import {Action, MyState} from './types';
 
 const initialState: MyState = {
   joke: null,
@@ -23,11 +22,10 @@ const reducer = (state: any = initialState, action: Action) => {
     case 'DELETE_JOKE':
       const index = action.index;
       const tempTopList = [...state.topList];
-      console.log(index)
       const newTopList =
-        index === tempTopList.length - 1
+        (index === tempTopList.length - 1)
           ? tempTopList.slice(0, index)
-          : [...tempTopList.slice(0, index), tempTopList.slice(index)];
+          : [...tempTopList.slice(0, index), ...tempTopList.slice(index!+1)];
       if (!newTopList.length) localStorage.removeItem('topList');
       else localStorage.setItem('topList', JSON.stringify(newTopList));
       return {...state, topList: newTopList};
@@ -45,6 +43,7 @@ const reducer = (state: any = initialState, action: Action) => {
       if (state.topList[state.topList.length - 1] === currentJoke) {
         newTopList2.pop();
       } else {
+        if (newTopList2.length === 3) {newTopList2.shift()}
         newTopList2.push(currentJoke);
       }
       localStorage.setItem('topList', JSON.stringify(newTopList2));

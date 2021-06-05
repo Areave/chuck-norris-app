@@ -1,11 +1,17 @@
-import {JokeContainer} from '../../services/styledComponents';
+import {JokeContainer, JokeTextStyled} from '../../services/styledComponents';
+import JokeImg from './jokeImg'
+
+
 
 const JokeComponent = (props: any) => {
-  const {joke} = props;
+
+  const url = '../../chuckIMG/1.jpg'
 
   return (
     <JokeContainer>
-      <h1>{joke}</h1>;
+      <JokeImg url={url}/>
+      {/* <JokeImageStyled url={}/> */}
+      <JokeTextStyled joke={props.joke}/>
     </JokeContainer>
   );
 };

@@ -5,7 +5,7 @@ const ButtonsComponent = ({propsAr}: any) => {
 
 
   return <ButtonsContainer>
-    <h1>buttons</h1>
+    {/* <h1>buttons</h1> */}
     {propsAr.map((props:any, index:number) => <Button key={index} {...props} />)}
   </ButtonsContainer>
 

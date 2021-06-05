@@ -1,7 +1,7 @@
 export type Action = {
   type: string;
   payload?: Joke;
-  index?: number
+  index?: number;
 };
 
 export type Joke = {
