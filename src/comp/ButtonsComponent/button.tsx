@@ -5,7 +5,7 @@ import {ButtonStyled} from '../../services/styledComponents'
 // import {Joke, State} from '../services/types';
 // import {jokeLoaded} from '../services/actions';
 
-const Button: React.FC<ButtonPropsInterface> = ({onClick, label}) => {
+const Button: React.FC<ButtonPropsInterface> = ({onClick, label}:ButtonPropsInterface) => {
   return <ButtonStyled onClick={() => onClick()}>{label}</ButtonStyled>;
 };
 

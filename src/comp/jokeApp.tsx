@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Action, Joke, MyState} from '../services/types';
+import {Action, Joke, MyState, ButtonPropsInterface} from '../services/types';
 import service from '../services/service'
 
 import {
@@ -12,7 +12,7 @@ import {
   deleteJoke
 } from '../services/actions';
 
-import {Container, TitleStyled} from '../services/styledComponents';
+import {Container} from '../services/styledComponents';
 import Title from '../comp/Title/title'
 import JokeComponent from './JokeComponent/jokeComponent';
 import ButtonsComponent from './ButtonsComponent/buttonsComponent';
@@ -34,8 +34,6 @@ const JokeApp: React.FC = (props: any) => {
     clearTopList,
     deleteJoke,
   } = props;
-
-
 
   const toggleTopList = () => {
     openTopList();
@@ -59,18 +57,17 @@ const JokeApp: React.FC = (props: any) => {
     service.getRandomJoke().then((res: any) => {
       jokeLoaded(res);
     });
-  };
- 
+  }; 
 
-  const createButtonProps = (onClick: Function, label: string) => {
+  const createButtonProps = (onClick: (joke?: Joke | undefined) => void, label: string) => {
     return {onClick, label};
   };
 
-  const propsAr = [
+  const propsAr: ButtonPropsInterface[] = [
     createButtonProps(loadSingleJoke, 'Random Joke'),
     createButtonProps(loadIntervalJoke, 'Interval'),
     createButtonProps(jokeToTop, 'Add to Top'),
-    createButtonProps(toggleTopList, 'Open Top List'),
+    createButtonProps(toggleTopList, isTopListOpen ? 'Close Top List' : 'Open Top List' ),
     createButtonProps(clearTopList, 'Clear Top List'),
   ];
 
@@ -80,7 +77,6 @@ const JokeApp: React.FC = (props: any) => {
 
   return (
     <Container>
-      {/* <TitleStyled/> */}
       <Title/>
       <JokeComponent joke={jokeText} />
       <ButtonsComponent propsAr={propsAr} />

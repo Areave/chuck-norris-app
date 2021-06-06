@@ -7,7 +7,7 @@ class Service {
   getRandomJoke = async () => {
     const joke = await axios
       .get(this._jokeAPI)
-      .then((joke) => joke.data)
+      .then((joke) => joke.data as Joke)
       .catch((error) => {
         if (error.response) {
           console.log('error.response', error.response);
@@ -18,7 +18,7 @@ class Service {
           return null;
         }
       });
-    return joke as Joke;
+    return joke;
   };
 }
 

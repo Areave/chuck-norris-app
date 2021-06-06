@@ -17,7 +17,7 @@ const reducer = (state: any = initialState, action: Action) => {
 
     case 'CLEAR_TOPLIST':
       localStorage.removeItem('topList');
-      return {...state, topList: []};
+      return {...state, isTopListOpen: false, topList: []};
 
     case 'DELETE_JOKE':
       const index = action.index;

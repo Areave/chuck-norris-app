@@ -5,7 +5,7 @@ import {
   TopListTextStyled,
 } from '../../services/styledComponents';
 
-const TopListItem = ({textJoke, deleteJoke, index}: any) => {
+const TopListItem = ({textJoke, deleteJoke, index}:any) => {
   if (textJoke === '') return null;
   return (
     <TopListItemStyled key={index}>

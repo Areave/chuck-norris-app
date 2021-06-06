@@ -1,13 +1,13 @@
-import {FC} from 'react';
+import React from 'react'
 import {connect} from 'react-redux';
 import {Joke, MyState} from '../../services/types';
 import TopListItem from './topListItem';
 import {TopListContainer} from '../../services/styledComponents';
 
 const TopListComponent = ({topList, deleteJoke}: any) => {
-  if (!topList.length) return <h1>no jokes!</h1>;
+  if (!topList.length) return null;
 
-  const topListArr = topList.map((joke: Joke, index: number) => (
+  const topListArr: React.FC[]= topList.map((joke: Joke, index: number) => (
     <TopListItem
       key={index}
       index={index}
@@ -25,8 +25,5 @@ const mapStateToProps = (state: MyState) => {
   };
 };
 
-const topListHOC = (View: FC) => (props: any) => {
-  return <View {...props} />;
-};
 
-export default topListHOC(connect(mapStateToProps)(TopListComponent));
+export default connect(mapStateToProps)(TopListComponent);

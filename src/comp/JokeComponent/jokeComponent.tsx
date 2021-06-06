@@ -3,14 +3,11 @@ import JokeImg from './jokeImg'
 
 
 
-const JokeComponent = (props: any) => {
-
-  const url = '../../chuckIMG/1.jpg'
+const JokeComponent = (props: {joke:string}) => { 
 
   return (
     <JokeContainer>
-      <JokeImg url={url}/>
-      {/* <JokeImageStyled url={}/> */}
+      <JokeImg/>
       <JokeTextStyled joke={props.joke}/>
     </JokeContainer>
   );

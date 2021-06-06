@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import JokeText from '../comp/JokeComponent/jokeText'
-
+import JokeText from '../comp/JokeComponent/jokeText';
 
 const Container = styled.div`
   max-width: 800px;
@@ -9,24 +8,30 @@ const Container = styled.div`
 `;
 
 const TitleStyled = styled.div`
-font-size: 40px;
-text-align: center;
+  font-size: 40px;
+  text-align: center;
+  padding-bottom: 15px;
 `;
 
 const JokeContainer = styled.div`
+display:flex;
   width: 100%;
   min-height: 200px;
   padding: 10px;
 `;
 
-
-
 const JokeTextStyled = styled(JokeText)`
-font-size: 30px;
+  font-size: 30px;
+  padding-left: 25px;
+`;
 
-`
-const JokeImgStyled = styled.div`
-background: url();
+const JokeImgStyled = styled.div<{url: string}>`
+${props=>props.url && `
+flex: 0 0 200px;
+background: center / cover no-repeat url(${props.url});
+width:200px;
+height: 200px;
+`}
 `;
 
 const ButtonsContainer = styled.div`
@@ -73,7 +78,7 @@ const TopListNumberStyled = styled.div`
   flex: 0 0 60px;
 
   padding: 15px;
-  padding-top:0;
+  padding-top: 0;
 
   font-size: 24px;
 
@@ -83,8 +88,8 @@ const TopListNumberStyled = styled.div`
 `;
 
 const TopListTextStyled = styled.div`
-flex: 0 0 70%;
-padding: 0 20px;
+  flex: 0 0 70%;
+  padding: 0 20px;
   font-size: 20px;
   font-style: italic;
   font-weight: bold;

@@ -19,22 +19,9 @@ export type MyState = {
   isTopListOpen: boolean;
 };
 
-export type ActionCreator = (joke?: Joke) => Action;
+export type ActionCreator = (arg?: any) => Action;
 
-export type MyReducer = (
-  state: MyState | undefined,
-  action: Action
-) =>
-  | MyState
-  | {
-      joke: Joke | undefined;
-      topList: (Joke | null | undefined)[] | [];
-      isTimer: boolean;
-      loading: boolean;
-      isTopListOpen: boolean;
-    };
-
-export interface ButtonPropsInterface {
-  onClick: (joke?: Joke) => void;
+export type ButtonPropsInterface = {
+  onClick: (joke?: Joke) => any;
   label: string;
 }
